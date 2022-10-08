@@ -15,15 +15,13 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::controller(ProductsController::class)->group(function() {
+    Route::get('products/categories', 'allCategories');
+    Route::get('products', 'allProducts');
+    Route::get('products/{product_id}', 'singleProduct');
+    Route::post('products/search/{keywords}', 'searchProduct');
+    Route::put('products/category/{category_name}', 'categoryProduct');
+    Route::delete('products/add', 'addProduct');
+    Route::get('roducts/{product_id}', 'updateProduct');
+    Route::get('products/{product_id}', 'deleteProduct');
 });
-
-Route::get('products/categories',[ProductsController::class, 'allCategory']);
-Route::get('products', [ProductsController::class, 'allProducts']);
-Route::get('products/{product_id}', [ProductsController::class, 'singleProduct']);
-Route::get('products/search/{keywords}', [ProductsController::class, 'searchProduct']);
-Route::get('products/category/{category_name}', [ProductsController::class, 'categoryProduct']);
-Route::post('products/add', [ProductsController::class, 'addProduct']);
-Route::put('products/{product_id}', [ProductsController::class, 'updateProduct']);
-Route::delete('products/{product_id}', [ProductsController::class, 'deleteProduct']);

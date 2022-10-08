@@ -34,7 +34,7 @@ class ProductsController extends Controller
         }
     }
     
-    public function allCategory(){
+    public function allCategories(){
         $retrieved_category = Product::select('category')->get();
         $categories = array();
         foreach($retrieved_category as $category){
